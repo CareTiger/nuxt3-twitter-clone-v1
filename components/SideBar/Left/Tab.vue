@@ -1,0 +1,29 @@
+<template>
+  <nuxt-link
+    to="#"
+    class="flex items-center p-3 w-min hover:bg-gray-200 rounded-full"
+    :class="defaultTransition"
+  >
+    <div class="w-6 h-6 text-dark">
+      <slot name="icon"></slot>
+    </div>
+    <div class="hidden ml-4 text-xl xl:block" :class="textClasses">
+      <slot name="name"></slot>
+    </div>
+  </nuxt-link>
+</template>
+<script setup>
+import { HomeIcon } from "@heroicons/vue/solid/index.js";
+const { defaultTransition } = useTailwindConfig();
+
+const props = defineProps({
+  active: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const textClasses = computed(() =>
+  props.active ? "font-bold" : "font-normal"
+);
+</script>
