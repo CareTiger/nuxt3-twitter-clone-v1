@@ -46,10 +46,8 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  // generate tokens
+  // generate access and refresh tokens
   const { accessToken, refreshToken } = generateTokens(user);
-  // access token
-  // refresh token
 
   // save the refresh token in db
   await createRefreshToken({
@@ -57,7 +55,7 @@ export default defineEventHandler(async (event) => {
     userId: user.id,
   });
 
-  // add http onnly cookie
+  // add refresh token to the http only cookie
   sendRefreshToken(event, refreshToken);
 
   return {

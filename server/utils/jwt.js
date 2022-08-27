@@ -47,8 +47,12 @@ export const generateTokens = (user) => {
 };
 
 export const sendRefreshToken = (event, token) => {
+  console.log("sendRefreshToken " + token)
   setCookie(event.res, "refresh_token", token, {
     httpOnly: true,
     sameSite: true,
   });
 };
+
+
+// https://vadosware.io/post/cookie-authentication-without-nuxt-auth/
